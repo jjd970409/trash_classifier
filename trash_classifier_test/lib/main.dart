@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
       title: '쓰레기 분류 도우미',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(
-          seedColor: Colors.green, // 앱의 주요 색상
+          seedColor: Colors.green, // 앱의 주요 색상 ddd
           brightness: Brightness.light, // 밝은 테마 사용
         ),
         fontFamily: 'NotoSansKR', // 기본 글꼴 설정 (pubspec.yaml에 폰트 추가 필요)
