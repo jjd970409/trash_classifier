@@ -88,6 +88,12 @@ class _HomeScreenState extends State<HomeScreen> {
                     _searchTrash(value);
                     FocusScope.of(context).unfocus();
                   },
+                    onTapOutside: (event) {
+                    setState(() {
+                      _autocompleteResults.clear(); // 외부 터치 시 자동 완성 목록 숨기기
+                    });
+                    FocusScope.of(context).unfocus(); // 키보드도 내려가게 함
+                  },
                 ),
                 const SizedBox(height: 32),
                 const Text(
@@ -156,6 +162,8 @@ class _HomeScreenState extends State<HomeScreen> {
               child: Material(
                 elevation: 2,
                 borderRadius: BorderRadius.circular(10),
+                child: ConstrainedBox( // 최대 높이 제한 추가
+                  constraints: BoxConstraints(maxHeight: 170),
                 child: ListView.builder(
                   shrinkWrap: true,
                   itemCount: _autocompleteResults.length,
@@ -169,8 +177,9 @@ class _HomeScreenState extends State<HomeScreen> {
                         _autocompleteResults.clear(); // 선택 후 자동 완성 결과 숨기기
                         FocusScope.of(context).unfocus();
                       },
-                    );
-                  },
+                      );
+                    },
+                  ),
                 ),
               ),
             ),
